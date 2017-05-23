@@ -10,26 +10,27 @@ class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	private final JButton[] buttons;
+	
 	LevelsPane() throws IOException
 	{
 		super(new GridLayout());
 		loader.load("levels.txt");
 		((GridLayout)getLayout()).setRows(loader.getLevelsCount());
 		buttons=new JButton[loader.getLevelsCount()];
-		for (int i=1; i<=loader.getLevelsCount(); i++)
+		for (int i=0; i<loader.getLevelsCount(); i++)
 		{
-			buttons[i-1]=new JButton("Level "+i);
+			buttons[i]=new JButton("Level "+i);
 			int finalI=i;
-			buttons[i-1].addActionListener(new ActionListener()
+			buttons[i].addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-//					System.out.println(finalI);
-					Board.board=loader.get(finalI-1);
+//					System.out.println(finalI+1);
+					Board.board=loader.get(finalI);
 				}
 			});
-			add(buttons[i-1]);
+			add(buttons[i]);
 		}
 	}
 }
