@@ -10,7 +10,6 @@ class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	private final JButton[] buttons;
-	
 	LevelsPane() throws IOException
 	{
 		super(new GridLayout());
@@ -19,8 +18,8 @@ class LevelsPane extends JPanel
 		buttons=new JButton[loader.getLevelsCount()];
 		for (int i=0; i<loader.getLevelsCount(); i++)
 		{
-			buttons[i]=new JButton("Level "+i);
-			int finalI=i;
+			buttons[i]=new JButton("Level "+(i+1));
+			final int finalI=i;
 			buttons[i].addActionListener(new ActionListener()
 			{
 				@Override
@@ -28,6 +27,14 @@ class LevelsPane extends JPanel
 				{
 //					System.out.println(finalI+1);
 					Board.board=loader.get(finalI);
+					try
+					{
+						Game.refreshBoard(finalI);
+					}
+					catch (IOException e1)
+					{
+						e1.printStackTrace();
+					}
 				}
 			});
 			add(buttons[i]);

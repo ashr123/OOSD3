@@ -3,10 +3,10 @@ package levelLoader;
 public class Cell
 {
 	private final int _x, _y;
-	private Boolean _isFloor;
-	private Boolean _isStorage;
-	private Boolean _hasPlayer;
-	private Boolean _hasBox;
+	private boolean _isFloor;
+	private boolean _isStorage;
+	private boolean _hasPlayer;
+	private boolean _hasBox;
 	
 	/**
 	 * construct a Wall cell
@@ -40,22 +40,22 @@ public class Cell
 		this(cell.get_x(), cell.get_y(), cell.isStorage(), cell.hasPlayer(), cell.hasBox());
 	}
 	
-	public Boolean isFloor()
+	public boolean isFloor()
 	{
 		return _isFloor;
 	}
 	
-	public Boolean isStorage()
+	public boolean isStorage()
 	{
 		return _isStorage;
 	}
 	
-	public Boolean hasPlayer()
+	public boolean hasPlayer()
 	{
 		return _hasPlayer;
 	}
 	
-	public Boolean hasBox()
+	public boolean hasBox()
 	{
 		return _hasBox;
 	}
