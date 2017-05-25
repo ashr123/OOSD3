@@ -65,8 +65,8 @@ public class Game extends JFrame
 			}
 		});
 		setResizable(false);
-		setVisible(true);
 		pack();
+		setVisible(true);
 		playBackgroundMusic();
 	}
 	

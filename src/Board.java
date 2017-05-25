@@ -10,7 +10,7 @@ enum PlayerState
 	FRONT, BACK, LEFT, RIGHT
 }
 
-public class Board extends JPanel
+class Board extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	static Cell[][] board;
@@ -76,7 +76,7 @@ public class Board extends JPanel
 		buildBoard();
 	}
 	
-	void buildBoard()
+	private void buildBoard()
 	{
 		setLayout(new GridLayout(board.length, board[0].length));
 		jLabels=new JLabel[board.length][board[0].length];
@@ -133,13 +133,7 @@ public class Board extends JPanel
 				{
 					jLabels[i][j]=new JLabel(new ImageIcon("Images/Box.png"));
 					add(jLabels[i][j]);
-					continue;
 				}
-//				if (!board[i][j].hasPlayer() && board[i][j].isStorage())//Player on storage
-//				{
-//					//TODO Change!!!
-//					add(new JLabel());
-//				}
 			}
 		
 //		for (int i=0; i<jLabels[0].length; i++)
@@ -155,28 +149,24 @@ public class Board extends JPanel
 				if (!board[i][j].isFloor())//is a wall
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/WallBlack.png"));
-					//jLabels[i][j]=new JLabel(new ImageIcon("Images/WallBlack.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/StorageWithBox.png"));
-					//jLabels[i][j]=new JLabel(new ImageIcon("Images/StorageWithBox.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Storage.png"));
-					//jLabels[i][j]=new JLabel(new ImageIcon("Images/Storage.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Grass.png"));
-					//jLabels[i][j]=new JLabel(new ImageIcon("Images/Grass.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
@@ -188,19 +178,15 @@ public class Board extends JPanel
 					{
 						case FRONT:
 							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterFront.png"));
-							//jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterFront.png"));
 							break;
 						case BACK:
 							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterBack.png"));
-							//jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterBack.png"));
 							break;
 						case LEFT:
 							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterLeft.png"));
-							//jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterLeft.png"));
 							break;
 						case RIGHT:
 							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterRight.png"));
-							//jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterRight.png"));
 							break;
 					}
 					add(jLabels[i][j]);
@@ -209,15 +195,8 @@ public class Board extends JPanel
 				if (board[i][j].hasBox())//Box on the floor
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Box.png"));
-					//jLabels[i][j]=new JLabel(new ImageIcon("Images/Box.png"));
 					add(jLabels[i][j]);
-					continue;
 				}
-//				if (!board[i][j].hasPlayer() && board[i][j].isStorage())//Player on storage
-//				{
-//					//TODO Change!!!
-//					add(new JLabel());
-//				}
 			}
 	}
 }
