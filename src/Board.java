@@ -30,14 +30,13 @@ public class Board extends JPanel
 			{
 				if (!board[i][j].isFloor())//is a wall
 				{
-					level[i][j]=new JLabel(new ImageIcon("wall.jpg"));
+					level[i][j]=new JLabel(new ImageIcon("WallBlack.png"));
 					//add(level[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
-					//TODO Change!!!
-					//add(new JLabel());
+					level[i][j]=new JLabel(new ImageIcon("StorageWithBox.png"));
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
@@ -48,7 +47,7 @@ public class Board extends JPanel
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
-					level[i][j]=new JLabel(new ImageIcon("floor.jpg"));
+					level[i][j]=new JLabel(new ImageIcon("Floor.png"));
 					//add(level[i][j]);
 					continue;
 				}
@@ -60,7 +59,7 @@ public class Board extends JPanel
 				}
 				if (board[i][j].hasBox())//Box on the floor
 				{
-					level[i][j]=new JLabel(new ImageIcon("box.png"));
+					level[i][j]=new JLabel(new ImageIcon("Box.png"));
 					//add(level[i][j]);
 					continue;
 				}
