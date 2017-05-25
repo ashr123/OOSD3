@@ -22,7 +22,7 @@ public class Game extends JFrame
 		//getContentPane().add(pane);
 		board=new Board(0);
 		getContentPane().add(board);
-		playBackgroundMusic("Sounds/GameMusic.wav");
+		playBackgroundMusic();
 		addKeyListener(new KeyListener()
 		{
 			@Override
@@ -49,7 +49,7 @@ public class Game extends JFrame
 							break;
 						case KeyEvent.VK_DOWN:
 							System.out.println("DOWN");
-							Player.MoveDown();
+							Player.MoveDown(board);
 							break;
 					}
 					Game.refreshBoard(level);
@@ -84,13 +84,14 @@ public class Game extends JFrame
 		new Game();
 	}
 	
-	public static void playBackgroundMusic(String filename)
+	public static void playBackgroundMusic()
 	{
 		try
 		{
 			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(new File(filename)));
-			clip.start();
+			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/GameMusic.wav")));
+			//clip.start();
+			clip.loop(Integer.MAX_VALUE);
 		}
 		catch (Exception exc)
 		{

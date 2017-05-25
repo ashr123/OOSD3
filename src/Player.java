@@ -4,7 +4,7 @@ public class Player
 {
 	static int playerLocationX, playerLocationY;
 	
-	static void MoveDown() throws IOException
+	static void MoveDown(Board board) throws IOException
 	{
 		Board.playerState=PlayerState.BACK;
 		if (playerLocationY+1<Board.board.length)
@@ -18,7 +18,7 @@ public class Player
 							Board.board[playerLocationY++][playerLocationX].set_hasBox(false);
 							Board.board[playerLocationY][playerLocationX].set_hasBox(true);
 						}
-		Board.refreshBoard(Game.level);
+		board.RefreshBoard();
 	}
 	
 	static void MoveUp()
