@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -7,15 +8,19 @@ public class Game extends JFrame
 {
 	private static JSplitPane pane;
 	static int level;
+	static Board board;
 	private Game() throws IOException
 	{
 		super("Sokoban");
 		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(new BorderLayout());
-		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
-		//pane.setDividerLocation(150);
-		getContentPane().add(pane);
+		//pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
+		
+		//getContentPane().add(pane);
+		board=new Board(0);
+		getContentPane().add(board);
+		
 		addKeyListener(new KeyListener()
 		{
 			@Override
@@ -68,7 +73,8 @@ public class Game extends JFrame
 	static void refreshBoard(int level2) throws IOException
 	{
 		level=level2;//
-		pane.setRightComponent(new Board(level));
+		//pane.setRightComponent(new Board());
+		//container.add(board);
 	}
 	
 	public static void main(String[] args) throws IOException

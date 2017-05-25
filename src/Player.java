@@ -6,7 +6,7 @@ public class Player
 	
 	static void MoveDown() throws IOException
 	{
-		Board.playerState=PlayerState.FRONT;
+		Board.playerState=PlayerState.BACK;
 		if (playerLocationY+1<Board.board.length)
 			if (Board.board[playerLocationY+1][playerLocationX].isFloor())
 				if (Board.board[playerLocationY+1][playerLocationX].hasBox())
@@ -18,7 +18,7 @@ public class Player
 							Board.board[playerLocationY++][playerLocationX].set_hasBox(false);
 							Board.board[playerLocationY][playerLocationX].set_hasBox(true);
 						}
-		Game.refreshBoard(Game.level);
+		Board.refreshBoard(Game.level);
 	}
 	
 	static void MoveUp()
