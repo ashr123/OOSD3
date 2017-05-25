@@ -34,6 +34,7 @@ public class Game extends JFrame
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
+				playWalkingSound();
 				try
 				{
 					switch (e.getKeyCode())
@@ -70,6 +71,21 @@ public class Game extends JFrame
 		setResizable(false);
 		setVisible(true);
 		pack();
+	}
+	
+	private void playWalkingSound()
+	{
+		try
+		{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
+			clip.start();
+		}
+		catch (Exception exc)
+		{
+			exc.printStackTrace(System.out);
+		}
+		
 	}
 	
 	static void refreshBoard(int level2) throws IOException
