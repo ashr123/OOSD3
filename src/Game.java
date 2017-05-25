@@ -12,6 +12,7 @@ public class Game extends JFrame
 	private static JSplitPane pane;
 	static int level;
 	static Board board;
+	
 	private Game() throws IOException
 	{
 		super("Sokoban");
@@ -22,8 +23,7 @@ public class Game extends JFrame
 		
 		//getContentPane().add(pane);
 		board=new Board(0);
-		getContentPane().add(board);
-		playBackgroundMusic();
+		add(board);
 		addKeyListener(new KeyListener()
 		{
 			@Override
@@ -37,29 +37,24 @@ public class Game extends JFrame
 			{
 				playWalkingSound();
 				numberOfSteps++;
-				try
+				switch (e.getKeyCode())
 				{
-					switch (e.getKeyCode())
-					{
-						case KeyEvent.VK_LEFT:
-							
-							break;
-						case KeyEvent.VK_RIGHT:
-							
-							break;
-						case KeyEvent.VK_UP:
-							
-							break;
-						case KeyEvent.VK_DOWN:
-							System.out.println("DOWN");
-							Player.MoveDown(board);
-							break;
-					}
-					Game.refreshBoard(level);
-				}
-				catch (IOException e1)
-				{
-					e1.printStackTrace();
+					case KeyEvent.VK_LEFT:
+						System.out.println("LEFT");
+						Player.MoveLeft(board);
+						break;
+					case KeyEvent.VK_RIGHT:
+						System.out.println("RIGHT");
+						Player.MoveRight(board);
+						break;
+					case KeyEvent.VK_UP:
+						System.out.println("UP");
+						Player.MoveUp(board);
+						break;
+					case KeyEvent.VK_DOWN:
+						System.out.println("DOWN");
+						Player.MoveDown(board);
+						break;
 				}
 			}
 			
@@ -69,32 +64,10 @@ public class Game extends JFrame
 			
 			}
 		});
-		//setSize(800, 600);
 		setResizable(false);
 		setVisible(true);
 		pack();
-	}
-	
-	private void playWalkingSound()
-	{
-		try
-		{
-			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
-			clip.start();
-		}
-		catch (Exception exc)
-		{
-			exc.printStackTrace(System.out);
-		}
-		
-	}
-	
-	static void refreshBoard(int level2) throws IOException
-	{
-		level=level2;//
-		//pane.setRightComponent(new Board());
-		//container.add(board);
+		playBackgroundMusic();
 	}
 	
 	public static void main(String[] args) throws IOException
@@ -102,14 +75,28 @@ public class Game extends JFrame
 		new Game();
 	}
 	
-	public static void playBackgroundMusic()
+	private static void playBackgroundMusic()
 	{
 		try
 		{
-			Clip clip = AudioSystem.getClip();
+			Clip clip=AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/GameMusic.wav")));
 			//clip.start();
 			clip.loop(Integer.MAX_VALUE);
+		}
+		catch (Exception exc)
+		{
+			exc.printStackTrace(System.out);
+		}
+	}
+	
+	private void playWalkingSound()
+	{
+		try
+		{
+			Clip clip=AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
+			clip.start();
 		}
 		catch (Exception exc)
 		{
