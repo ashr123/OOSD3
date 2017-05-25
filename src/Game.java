@@ -7,6 +7,7 @@ public class Game extends JFrame
 	private Game() throws IOException
 	{
 		super("Sokoban");
+		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(new BorderLayout());
 		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board());
