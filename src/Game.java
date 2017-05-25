@@ -9,7 +9,7 @@ public class Game extends JFrame
 		super("Sokoban");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(new BorderLayout());
-		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
+		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board());
 		//pane.setDividerLocation(150);
 		getContentPane().add(pane);
 		//setSize(800, 600);
@@ -20,7 +20,8 @@ public class Game extends JFrame
 	
 	static void refreshBoard(int level) throws IOException
 	{
-		pane.setRightComponent(new Board(level));
+		Board.level=level;
+		pane.setRightComponent(new Board());
 	}
 	
 	public static void main(String[] args) throws IOException
