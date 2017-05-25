@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class Game extends JFrame
 {
+	private int numberOfSteps;
 	private static JSplitPane pane;
 	static int level;
 	static Board board;
@@ -35,6 +36,7 @@ public class Game extends JFrame
 			public void keyPressed(KeyEvent e)
 			{
 				playWalkingSound();
+				numberOfSteps++;
 				try
 				{
 					switch (e.getKeyCode())
