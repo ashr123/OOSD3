@@ -18,7 +18,7 @@ public class Player
 							Board.board[playerLocationY++][playerLocationX].set_hasBox(false);
 							Board.board[playerLocationY][playerLocationX].set_hasBox(true);
 						}
-		Game.refreshBoard(Board.level);
+		Game.refreshBoard(Game.level);
 	}
 	
 	static void MoveUp()

@@ -1,28 +1,74 @@
 import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 public class Game extends JFrame
 {
 	private static JSplitPane pane;
+	static int level;
 	private Game() throws IOException
 	{
 		super("Sokoban");
 		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(new BorderLayout());
-		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board());
+		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
 		//pane.setDividerLocation(150);
 		getContentPane().add(pane);
+		addKeyListener(new KeyListener()
+		{
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+			
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				try
+				{
+					switch (e.getKeyCode())
+					{
+						case KeyEvent.VK_LEFT:
+							
+							break;
+						case KeyEvent.VK_RIGHT:
+							
+							break;
+						case KeyEvent.VK_UP:
+							
+							break;
+						case KeyEvent.VK_DOWN:
+							System.out.println("DOWN");
+							Player.MoveDown();
+							break;
+					}
+					Game.refreshBoard(level);
+				}
+				catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+			
+			}
+		});
 		//setSize(800, 600);
 		setResizable(false);
 		setVisible(true);
 		pack();
 	}
 	
-	static void refreshBoard(int level) throws IOException
+	static void refreshBoard(int level2) throws IOException
 	{
-		Board.level=level;//
-		pane.setRightComponent(new Board());
+		level=level2;//
+		pane.setRightComponent(new Board(level));
 	}
 	
 	public static void main(String[] args) throws IOException

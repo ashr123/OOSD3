@@ -17,10 +17,9 @@ public class Board extends JPanel
 	private final LevelLoader loader=new LevelLoader();
 	static Cell[][] board;
 	private JLabel[][] jLabels;
-	static int level;
 	static PlayerState playerState;
 	
-	Board() throws IOException
+	Board(int level) throws IOException
 	{
 		loader.load("levels.txt");
 		board=loader.get(level);
@@ -92,51 +91,9 @@ public class Board extends JPanel
 //					add(new JLabel());
 //				}
 			}
-		
+
 //		for (int i=0; i<jLabels[0].length; i++)
 //			for (JLabel[] aLevel : jLabels)
 //				add(aLevel[i]!=null ? aLevel[i] : new JLabel());
-		addKeyListener(new KeyListener()
-		{
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-			
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-				try
-				{
-					switch (e.getKeyCode())
-					{
-						case KeyEvent.VK_LEFT:
-							
-							break;
-						case KeyEvent.VK_RIGHT:
-							
-							break;
-						case KeyEvent.VK_UP:
-							
-							break;
-						case KeyEvent.VK_DOWN:
-							Player.MoveDown();
-							break;
-					}
-					Game.refreshBoard(level);
-				}
-				catch (IOException e1)
-				{
-					e1.printStackTrace();
-				}
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e)
-			{
-			
-			}
-		});
 	}
 }
