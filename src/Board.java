@@ -43,7 +43,7 @@ public class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/Storage.png"));//
+					jLabels[i][j]=new JLabel(new ImageIcon("Images/Storage.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
