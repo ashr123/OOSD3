@@ -20,7 +20,7 @@ public class Game extends JFrame
 	
 	static void refreshBoard(int level) throws IOException
 	{
-		Board.level=level;
+		Board.level=level;//
 		pane.setRightComponent(new Board());
 	}
 	

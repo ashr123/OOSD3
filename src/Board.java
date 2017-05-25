@@ -86,7 +86,7 @@ public class Board extends JPanel
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				switch (e.getKeyCode())
+				switch (e.getKeyCode())//
 				{
 					case KeyEvent.VK_LEFT:
 						
