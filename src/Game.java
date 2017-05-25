@@ -1,7 +1,9 @@
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.IOException;
 
 public class Game extends JFrame
@@ -20,7 +22,7 @@ public class Game extends JFrame
 		//getContentPane().add(pane);
 		board=new Board(0);
 		getContentPane().add(board);
-		
+		playBackgroundMusic("Sounds/GameMusic.wav");
 		addKeyListener(new KeyListener()
 		{
 			@Override
@@ -80,5 +82,19 @@ public class Game extends JFrame
 	public static void main(String[] args) throws IOException
 	{
 		new Game();
+	}
+	
+	public static void playBackgroundMusic(String filename)
+	{
+		try
+		{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+			clip.start();
+		}
+		catch (Exception exc)
+		{
+			exc.printStackTrace(System.out);
+		}
 	}
 }
