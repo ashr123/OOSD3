@@ -26,6 +26,53 @@ public class Board extends JPanel
 	{
 		loader.load("levels.txt");
 		board=loader.get(level);
+//		final Board temp=this;
+//		addKeyListener(new KeyListener()
+//		{
+//			@Override
+//			public void keyTyped(KeyEvent e)
+//			{
+//
+//			}
+//
+//			@Override
+//			public void keyPressed(KeyEvent e)
+//			{
+////				try
+////				{
+//				switch (e.getKeyCode())
+//				{
+//					case KeyEvent.VK_LEFT:
+//						System.out.println("LEFT");
+//						Player.MoveLeft(temp);
+//						break;
+//					case KeyEvent.VK_RIGHT:
+//						System.out.println("RIGHT");
+//						Player.MoveRight(temp);
+//						break;
+//					case KeyEvent.VK_UP:
+//						System.out.println("UP");
+//						Player.MoveUp(temp);
+//						break;
+//					case KeyEvent.VK_DOWN:
+//						System.out.println("DOWN");
+//						Player.MoveDown(temp);
+//						break;
+//				}
+//				//Game.refreshBoard(level);
+////				}
+////				catch (IOException e1)
+////				{
+////					e1.printStackTrace();
+////				}
+//			}
+//
+//			@Override
+//			public void keyReleased(KeyEvent e)
+//			{
+//
+//			}
+//		});
 		buildBoard();
 	}
 	
@@ -94,7 +141,7 @@ public class Board extends JPanel
 //					add(new JLabel());
 //				}
 			}
-
+		
 //		for (int i=0; i<jLabels[0].length; i++)
 //			for (JLabel[] aLevel : jLabels)
 //				add(aLevel[i]!=null ? aLevel[i] : new JLabel());
