@@ -14,6 +14,8 @@ class Board extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	static Cell[][] board;
+	private int numberOfBoxs;
+	private int counterPlacedBoxs;
 	private JLabel[][] jLabels;
 	static PlayerState playerState;
 	
@@ -91,6 +93,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
+					numberOfBoxs++;
 					jLabels[i][j]=new JLabel(new ImageIcon("Images/StorageWithBox.png"));
 					add(jLabels[i][j]);
 					continue;
@@ -131,6 +134,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].hasBox())//Box on the floor
 				{
+					numberOfBoxs++;
 					jLabels[i][j]=new JLabel(new ImageIcon("Images/Box.png"));
 					add(jLabels[i][j]);
 				}
@@ -143,6 +147,7 @@ class Board extends JPanel
 	
 	void RefreshBoard()
 	{
+		counterPlacedBoxs=0;
 		for (int i=0; i<board.length; i++)
 			for (int j=0; j<board[i].length; j++)
 			{
@@ -160,6 +165,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
+					counterPlacedBoxs++;
 					jLabels[i][j].setIcon(new ImageIcon("Images/Storage.png"));
 					add(jLabels[i][j]);
 					continue;
@@ -197,6 +203,9 @@ class Board extends JPanel
 					jLabels[i][j].setIcon(new ImageIcon("Images/Box.png"));
 					add(jLabels[i][j]);
 				}
+			}
+			if (numberOfBoxs==counterPlacedBoxs){
+				JOptionPane.showMessageDialog(null, "Congratulations, you passed the level!");
 			}
 	}
 }
