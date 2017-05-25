@@ -22,7 +22,7 @@ public class Game extends JFrame
 		//pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
 		
 		//getContentPane().add(pane);
-		board=new Board(0);
+		board=new Board(3);
 		add(board);
 		addKeyListener(new KeyListener()
 		{

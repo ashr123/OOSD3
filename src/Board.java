@@ -159,13 +159,13 @@ class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
+					counterPlacedBoxs++;
 					jLabels[i][j].setIcon(new ImageIcon("Images/StorageWithBox.png"));
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					counterPlacedBoxs++;
 					jLabels[i][j].setIcon(new ImageIcon("Images/Storage.png"));
 					add(jLabels[i][j]);
 					continue;
@@ -205,7 +205,7 @@ class Board extends JPanel
 				}
 			}
 			if (numberOfBoxs==counterPlacedBoxs){
-				JOptionPane.showMessageDialog(null, "Congratulations, you passed the level!");
+				JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
 			}
 	}
 }
