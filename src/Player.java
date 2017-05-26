@@ -45,7 +45,7 @@ class Player
 			if (Board.board[playerLocationY-1][playerLocationX].isFloor())
 				if (Board.board[playerLocationY-1][playerLocationX].hasBox())
 				{
-					if (playerLocationY+2<Board.board.length)
+					if (playerLocationY-2<Board.board.length)
 						if (Board.board[playerLocationY-2][playerLocationX].isFloor() &&
 						    !Board.board[playerLocationY-2][playerLocationX].hasBox())
 						{
