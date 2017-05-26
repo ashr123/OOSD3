@@ -98,7 +98,7 @@ public class Player
 				{
 					Board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
 					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				} 
+				}
 		board.RefreshBoard();
 	}
 }

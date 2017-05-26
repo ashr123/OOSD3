@@ -237,7 +237,7 @@ class Board extends JPanel implements KeyListener
 	{
 		playWalkingSound();
 		Game.numberOfSteps++;
-		LevelsPane.getCounter().setText(Game.getNumberOfSteps()+"");
+		Game.getCounter().setText(Game.getNumberOfSteps()+"");
 		switch (e.getKeyCode())
 		{
 			case KeyEvent.VK_LEFT:

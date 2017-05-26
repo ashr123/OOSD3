@@ -7,7 +7,9 @@ import java.io.IOException;
 public class Game extends JFrame
 {
 	static int numberOfSteps;
+	static JLabel counter;
 	static JSplitPane pane;
+	static JSplitPane paneOfPanes;
 	static int level;
 	static Board board;
 	
@@ -20,8 +22,10 @@ public class Game extends JFrame
 		
 		
 		//getContentPane().add(pane);
+		counter = new JLabel(numberOfSteps+"");
 		board=new Board(0);
-		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(this), board);
+		paneOfPanes = new JSplitPane(JSplitPane.VERTICAL_SPLIT,counter,new LevelsPane(this));
+		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT , paneOfPanes, board);
 		pane.getRightComponent().addKeyListener(board);
 		add(pane);
 		//add(board);
@@ -109,5 +113,8 @@ public class Game extends JFrame
 		{
 			exc.printStackTrace(System.out);
 		}
+	}
+	public static JLabel getCounter(){
+		return counter;
 	}
 }
