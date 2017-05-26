@@ -8,6 +8,7 @@ import java.io.IOException;
 
 class LevelsPane extends JPanel
 {
+	public static JLabel counter;
 	private final LevelLoader loader=new LevelLoader();
 	private final JButton[] buttons;
 	LevelsPane(final Game game) throws IOException
@@ -16,6 +17,8 @@ class LevelsPane extends JPanel
 		loader.load("levels.txt");
 		((GridLayout)getLayout()).setRows(loader.getLevelsCount());
 		buttons=new JButton[loader.getLevelsCount()];
+		counter = new JLabel(Game.getNumberOfSteps()+"");
+		add(counter);
 		for (int i=0; i<loader.getLevelsCount(); i++)
 		{
 			buttons[i]=new JButton("Level "+(i+1));
@@ -44,5 +47,8 @@ class LevelsPane extends JPanel
 			});
 			add(buttons[i]);
 		}
+	}
+	public static JLabel getCounter(){
+		return counter;
 	}
 }

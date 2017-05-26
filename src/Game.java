@@ -1,8 +1,6 @@
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -73,6 +71,10 @@ public class Game extends JFrame
 		playBackgroundMusic();
 		pane.getRightComponent().setFocusable(true);
 		pane.getRightComponent().requestFocus();
+	}
+	
+	public static int getNumberOfSteps(){
+		return numberOfSteps;
 	}
 	
 	public static void main(String[] args) throws IOException
