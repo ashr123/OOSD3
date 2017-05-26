@@ -10,7 +10,7 @@ class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	private final JButton[] buttons;
-	LevelsPane(Board board) throws IOException
+	LevelsPane(final Game game) throws IOException
 	{
 		super(new GridLayout());
 		loader.load("levels.txt");
@@ -34,6 +34,7 @@ class LevelsPane extends JPanel
 						Game.pane.getRightComponent().addKeyListener((Board)Game.pane.getRightComponent());
 						Game.pane.getRightComponent().setFocusable(true);
 						Game.pane.getRightComponent().requestFocus();
+						game.pack();
 					}
 					catch (IOException e1)
 					{
