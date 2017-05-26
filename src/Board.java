@@ -33,9 +33,9 @@ class Board extends JPanel
 			@Override
 			public void keyTyped(KeyEvent e)
 			{
-
+			
 			}
-
+			
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
@@ -62,11 +62,11 @@ class Board extends JPanel
 						break;
 				}
 			}
-
+			
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-
+			
 			}
 		});
 		buildBoard();
@@ -199,9 +199,10 @@ class Board extends JPanel
 					add(jLabels[i][j]);
 				}
 			}
-			if (numberOfBoxs==counterPlacedBoxs){
-				JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
-			}
+		if (numberOfBoxs==counterPlacedBoxs)
+		{
+			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
+		}
 	}
 	
 	private void playWalkingSound()

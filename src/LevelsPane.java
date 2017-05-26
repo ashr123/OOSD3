@@ -28,7 +28,7 @@ class LevelsPane extends JPanel
 					Board.board=loader.get(finalI);
 					try
 					{
-						Board.playerState = PlayerState.FRONT;
+						Board.playerState=PlayerState.FRONT;
 						Game.pane.setRightComponent(new Board(finalI));
 						Game.pane.getRightComponent().setFocusable(true);
 						Game.pane.getRightComponent().requestFocus();
