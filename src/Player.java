@@ -1,7 +1,14 @@
+/**
+ * Represents a player and how he can move
+ */
 class Player
 {
 	static int playerLocationX, playerLocationY;
 	
+	/**
+	 * Moves the player one square down if he can move
+	 * @param board needed only for refreshing the board
+	 */
 	static void MoveDown(Board board)
 	{
 		Board.playerState=PlayerState.FRONT;
@@ -27,6 +34,10 @@ class Player
 		board.RefreshBoard();
 	}
 	
+	/**
+	 * Moves the player one square up if he can move
+	 * @param board needed only for refreshing the board
+	 */
 	static void MoveUp(Board board)
 	{
 		Board.playerState=PlayerState.BACK;
@@ -52,6 +63,10 @@ class Player
 		board.RefreshBoard();
 	}
 	
+	/**
+	 * Moves the player one square left if he can move
+	 * @param board needed only for refreshing the board
+	 */
 	static void MoveLeft(Board board)
 	{
 		Board.playerState=PlayerState.LEFT;
@@ -77,6 +92,10 @@ class Player
 		board.RefreshBoard();
 	}
 	
+	/**
+	 * Moves the player one square right if he can move
+	 * @param board needed only for refreshing the board
+	 */
 	static void MoveRight(Board board)
 	{
 		Board.playerState=PlayerState.RIGHT;

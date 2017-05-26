@@ -10,11 +10,17 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Represents the player direction state
+ */
 enum PlayerState
 {
 	FRONT, BACK, LEFT, RIGHT
 }
 
+/**
+ * Represents a Sokoban board
+ */
 class Board extends JPanel
 {
 	static Cell[][] board;
@@ -22,6 +28,11 @@ class Board extends JPanel
 	private JLabel[][] jLabels;
 	static PlayerState playerState;
 	
+	/**
+	 * Builds a new board
+	 * @param level the level of which the player wants to play
+	 * @throws IOException if there is any error with the levels file
+	 */
 	Board(int level) throws IOException
 	{
 		LevelLoader loader=new LevelLoader();
@@ -72,11 +83,15 @@ class Board extends JPanel
 		buildBoard();
 	}
 	
+	/**
+	 * Builds a board
+	 */
 	private void buildBoard()
 	{
-		Game.setNumberOfSteps();
+		Game.resetNumberOfSteps();
 		Game.getCounter().setText(0+"");
 		setLayout(new GridLayout(board.length, board[0].length));
+		//setLayout(new GridLayout(board[0].length, board.length));
 		jLabels=new JLabel[board.length][board[0].length];
 		for (int i=0; i<board.length; i++)
 			for (int j=0; j<board[i].length; j++)
@@ -140,6 +155,9 @@ class Board extends JPanel
 //				add(aLevel[i]!=null ? aLevel[i] : new JLabel());
 	}
 	
+	/**
+	 * Refreshes the board after every move
+	 */
 	void RefreshBoard()
 	{
 		int counterPlacedBoxes=0;
@@ -205,6 +223,9 @@ class Board extends JPanel
 		}
 	}
 	
+	/**
+	 * Plays a walking sound for every move the player makes
+	 */
 	private void playWalkingSound()
 	{
 		try

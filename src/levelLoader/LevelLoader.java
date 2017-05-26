@@ -105,7 +105,7 @@ public class LevelLoader
 	}
 	
 	/**
-	 * @param index - the level number
+	 * @param index the level number
 	 * @return the initial state of level number {@code index}
 	 * <p>
 	 * TODO - is recommended to create a deep copy of the array.
@@ -116,8 +116,8 @@ public class LevelLoader
 	}
 	
 	/**
-	 * create {@code Cell} instance from {@code char} representation
-	 * @return the {@code Cell} object
+	 * create {@link Cell} instance from {@code char} representation
+	 * @return the {@link Cell} object
 	 */
 	private Cell parseCell(char cell)
 	{

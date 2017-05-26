@@ -6,10 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Represents a level chooser panel
+ */
 class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	
+	/**
+	 * Builds the level chooser panel
+	 * @param game needed only for changing the frame size after choosing a level
+	 * @throws IOException if there is any error with the levels file
+	 */
 	LevelsPane(final Game game) throws IOException
 	{
 		super(new GridLayout());

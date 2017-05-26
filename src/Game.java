@@ -10,6 +10,10 @@ public class Game extends JFrame
 	private static JLabel counter;
 	static JSplitPane pane;
 	
+	/**
+	 * Builds a game window
+	 * @throws IOException if there is any error with the levels file
+	 */
 	private Game() throws IOException
 	{
 		super("Sokoban");
@@ -28,17 +32,27 @@ public class Game extends JFrame
 		pane.getRightComponent().requestFocus();
 	}
 	
-	
+	/**
+	 * @return the number of steps the player did in a single level
+	 */
 	static int getNumberOfSteps()
 	{
 		return numberOfSteps;
 	}
 	
+	/**
+	 * Main function
+	 * @param args an empty {@link String} array
+	 * @throws IOException if there is any error with the levels file
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		new Game();
 	}
 	
+	/**
+	 * Plays the background music
+	 */
 	private static void playBackgroundMusic()
 	{
 		try
@@ -58,7 +72,10 @@ public class Game extends JFrame
 		return counter;
 	}
 	
-	static void setNumberOfSteps()
+	/**
+	 * Resets the number of steps when changing a level
+	 */
+	static void resetNumberOfSteps()
 	{
 		numberOfSteps=0;
 	}
