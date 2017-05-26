@@ -9,15 +9,13 @@ import java.io.IOException;
 class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
-	private final JButton[] buttons;
+	
 	LevelsPane(final Game game) throws IOException
 	{
 		super(new GridLayout());
-		loader.load("levels.txt");
+		loader.load();
 		((GridLayout)getLayout()).setRows(loader.getLevelsCount());
-		buttons=new JButton[loader.getLevelsCount()];
-		//counter = new JLabel(Game.getNumberOfSteps()+"");
-		//add(counter);
+		JButton[] buttons=new JButton[loader.getLevelsCount()];
 		for (int i=0; i<loader.getLevelsCount(); i++)
 		{
 			buttons[i]=new JButton("Level "+(i+1));
@@ -27,13 +25,11 @@ class LevelsPane extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-//					System.out.println(finalI+1);
 					Board.board=loader.get(finalI);
 					try
 					{
 						Board.playerState = PlayerState.FRONT;
 						Game.pane.setRightComponent(new Board(finalI));
-						Game.pane.getRightComponent().addKeyListener((Board)Game.pane.getRightComponent());
 						Game.pane.getRightComponent().setFocusable(true);
 						Game.pane.getRightComponent().requestFocus();
 						game.pack();

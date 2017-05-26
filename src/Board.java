@@ -15,78 +15,66 @@ enum PlayerState
 	FRONT, BACK, LEFT, RIGHT
 }
 
-class Board extends JPanel implements KeyListener
+class Board extends JPanel
 {
-	private final LevelLoader loader=new LevelLoader();
 	static Cell[][] board;
 	private int numberOfBoxs;
-	private int counterPlacedBoxs;
 	private JLabel[][] jLabels;
 	static PlayerState playerState;
 	
-	Board() throws IOException
-	{
-		buildBoard();
-		//getInputMap().put(, "DOWN");
-	}
-	
 	Board(int level) throws IOException
 	{
-		loader.load("levels.txt");
+		LevelLoader loader=new LevelLoader();
+		loader.load();
 		board=loader.get(level);
-//		final Board temp=this;
-//		addKeyListener(new KeyListener()
-//		{
-//			@Override
-//			public void keyTyped(KeyEvent e)
-//			{
-//
-//			}
-//
-//			@Override
-//			public void keyPressed(KeyEvent e)
-//			{
-////				try
-////				{
-//				switch (e.getKeyCode())
-//				{
-//					case KeyEvent.VK_LEFT:
-//						System.out.println("LEFT");
-//						Player.MoveLeft(temp);
-//						break;
-//					case KeyEvent.VK_RIGHT:
-//						System.out.println("RIGHT");
-//						Player.MoveRight(temp);
-//						break;
-//					case KeyEvent.VK_UP:
-//						System.out.println("UP");
-//						Player.MoveUp(temp);
-//						break;
-//					case KeyEvent.VK_DOWN:
-//						System.out.println("DOWN");
-//						Player.MoveDown(temp);
-//						break;
-//				}
-//				//Game.refreshBoard(level);
-////				}
-////				catch (IOException e1)
-////				{
-////					e1.printStackTrace();
-////				}
-//			}
-//
-//			@Override
-//			public void keyReleased(KeyEvent e)
-//			{
-//
-//			}
-//		});
+		final Board temp=this;
+		addKeyListener(new KeyListener()
+		{
+			@Override
+			public void keyTyped(KeyEvent e)
+			{
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				playWalkingSound();
+				Game.numberOfSteps++;
+				Game.getCounter().setText(Game.getNumberOfSteps()+"");
+				switch (e.getKeyCode())
+				{
+					case KeyEvent.VK_LEFT:
+						System.out.println("LEFT");
+						Player.MoveLeft(temp);
+						break;
+					case KeyEvent.VK_RIGHT:
+						System.out.println("RIGHT");
+						Player.MoveRight(temp);
+						break;
+					case KeyEvent.VK_UP:
+						System.out.println("UP");
+						Player.MoveUp(temp);
+						break;
+					case KeyEvent.VK_DOWN:
+						System.out.println("DOWN");
+						Player.MoveDown(temp);
+						break;
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+
+			}
+		});
 		buildBoard();
 	}
 	
 	private void buildBoard()
 	{
-		Game.setNumberOfSteps(0);
+		Game.setNumberOfSteps();
 		Game.getCounter().setText(0+"");
 		setLayout(new GridLayout(board.length, board[0].length));
 		jLabels=new JLabel[board.length][board[0].length];
@@ -154,7 +142,7 @@ class Board extends JPanel implements KeyListener
 	
 	void RefreshBoard()
 	{
-		counterPlacedBoxs=0;
+		int counterPlacedBoxs=0;
 		for (int i=0; i<board.length; i++)
 			for (int j=0; j<board[i].length; j++)
 			{
@@ -214,63 +202,6 @@ class Board extends JPanel implements KeyListener
 			if (numberOfBoxs==counterPlacedBoxs){
 				JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
 			}
-	}
-	
-	/**
-	 * Invoked when a key has been typed.
-	 * See the class description for {@link KeyEvent} for a definition of
-	 * a key typed event.
-	 * @param e
-	 */
-	@Override
-	public void keyTyped(KeyEvent e)
-	{
-	
-	}
-	
-	/**
-	 * Invoked when a key has been pressed.
-	 * See the class description for {@link KeyEvent} for a definition of
-	 * a key pressed event.
-	 * @param e
-	 */
-	@Override
-	public void keyPressed(KeyEvent e)
-	{
-		playWalkingSound();
-		Game.numberOfSteps++;
-		Game.getCounter().setText(Game.getNumberOfSteps()+"");
-		switch (e.getKeyCode())
-		{
-			case KeyEvent.VK_LEFT:
-				System.out.println("LEFT");
-				Player.MoveLeft(this);
-				break;
-			case KeyEvent.VK_RIGHT:
-				System.out.println("RIGHT");
-				Player.MoveRight(this);
-				break;
-			case KeyEvent.VK_UP:
-				System.out.println("UP");
-				Player.MoveUp(this);
-				break;
-			case KeyEvent.VK_DOWN:
-				System.out.println("DOWN");
-				Player.MoveDown(this);
-				break;
-		}
-	}
-	
-	/**
-	 * Invoked when a key has been released.
-	 * See the class description for {@link KeyEvent} for a definition of
-	 * a key released event.
-	 * @param e
-	 */
-	@Override
-	public void keyReleased(KeyEvent e)
-	{
-	
 	}
 	
 	private void playWalkingSound()

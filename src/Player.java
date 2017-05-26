@@ -1,4 +1,4 @@
-public class Player
+class Player
 {
 	static int playerLocationX, playerLocationY;
 	

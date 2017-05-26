@@ -27,15 +27,13 @@ public class LevelLoader
 	
 	/**
 	 * Loads all the levels to the internal levels buffer
-	 * @param levelsFile the name of the file contains the levels
-	 * @return true if success
 	 * @throws IOException if there is any error with the file
 	 */
-	public boolean load(String levelsFile) throws IOException
+	public void load() throws IOException
 	{
 		_levels.clear();
 		
-		BufferedReader br=new BufferedReader(new FileReader(levelsFile));
+		BufferedReader br=new BufferedReader(new FileReader("levels.txt"));
 		String line;
 		Cell level[][]=null;
 		int w=0;
@@ -80,13 +78,13 @@ public class LevelLoader
 			// regular board line
 			for (int col=0; col<line.length(); col++)
 			{
-				Cell cell=parseCell(col, row, line.charAt(col));
+				Cell cell=parseCell(line.charAt(col));
 				if (null!=cell && level!=null)
 					level[col][row]=cell;
 				else
 				{
 					br.close();
-					return false;
+					return;
 				}
 			}
 			row++;
@@ -94,10 +92,8 @@ public class LevelLoader
 		if (null!=level)
 		{
 			_levels.add(level);
-			//level=null;
 		}
 		br.close();
-		return true;
 	}
 	
 	/**
@@ -123,24 +119,24 @@ public class LevelLoader
 	 * create {@code Cell} instance from {@code char} representation
 	 * @return the {@code Cell} object
 	 */
-	private Cell parseCell(int col, int row, char cell)
+	private Cell parseCell(char cell)
 	{
 		switch (cell)
 		{
 			case CHAR_WALL:
-				return new Cell(col, row);
+				return new Cell();
 			case CHAR_FLOOR:
-				return new Cell(col, row, false, false, false);
+				return new Cell(false, false, false);
 			case CHAR_PLAYER:
-				return new Cell(col, row, false, true, false);
+				return new Cell(false, true, false);
 			case CHAR_STORAGE:
-				return new Cell(col, row, true, false, false);
+				return new Cell(true, false, false);
 			case CHAR_BOX:
-				return new Cell(col, row, false, false, true);
+				return new Cell(false, false, true);
 			case CHAR_BOX_IN_STORAGE:
-				return new Cell(col, row, true, false, true);
+				return new Cell(true, false, true);
 			case CHAR_PLAYER_AT_STORAGE:
-				return new Cell(col, row, true, true, false);
+				return new Cell(true, true, false);
 			default:
 				return null;
 		}
