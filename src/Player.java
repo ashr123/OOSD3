@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 public class Player
 {
 	static int playerLocationX, playerLocationY;
@@ -100,7 +98,7 @@ public class Player
 				{
 					Board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
 					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				}
+				} 
 		board.RefreshBoard();
 	}
 }
