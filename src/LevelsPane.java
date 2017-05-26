@@ -10,11 +10,9 @@ class LevelsPane extends JPanel
 {
 	private final LevelLoader loader=new LevelLoader();
 	private final JButton[] buttons;
-	LevelsPane(final JSplitPane pane) throws IOException
+	LevelsPane(Board board) throws IOException
 	{
 		super(new GridLayout());
-		GridBagConstraints tProto=new GridBagConstraints();
-		tProto.insets=new Insets(2, 2, 2, 2);
 		loader.load("levels.txt");
 		((GridLayout)getLayout()).setRows(loader.getLevelsCount());
 		buttons=new JButton[loader.getLevelsCount()];
@@ -31,7 +29,11 @@ class LevelsPane extends JPanel
 					Board.board=loader.get(finalI);
 					try
 					{
-						pane.setRightComponent(new Board(finalI));
+						Board.playerState = PlayerState.FRONT;
+						Game.pane.setRightComponent(new Board(finalI));
+						Game.pane.getRightComponent().addKeyListener((Board)Game.pane.getRightComponent());
+						Game.pane.getRightComponent().setFocusable(true);
+						Game.pane.getRightComponent().requestFocus();
 					}
 					catch (IOException e1)
 					{

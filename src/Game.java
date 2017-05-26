@@ -8,8 +8,8 @@ import java.io.IOException;
 
 public class Game extends JFrame
 {
-	private int numberOfSteps;
-	private static JSplitPane pane;
+	static int numberOfSteps;
+	static JSplitPane pane;
 	static int level;
 	static Board board;
 	
@@ -19,55 +19,60 @@ public class Game extends JFrame
 		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		//getContentPane().setLayout(new BorderLayout());
-		//pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(), new Board(0));
+		
 		
 		//getContentPane().add(pane);
-		board=new Board(3);
-		add(board);
-		addKeyListener(new KeyListener()
-		{
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-			
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-				playWalkingSound();
-				numberOfSteps++;
-				switch (e.getKeyCode())
-				{
-					case KeyEvent.VK_LEFT:
-						System.out.println("LEFT");
-						Player.MoveLeft(board);
-						break;
-					case KeyEvent.VK_RIGHT:
-						System.out.println("RIGHT");
-						Player.MoveRight(board);
-						break;
-					case KeyEvent.VK_UP:
-						System.out.println("UP");
-						Player.MoveUp(board);
-						break;
-					case KeyEvent.VK_DOWN:
-						System.out.println("DOWN");
-						Player.MoveDown(board);
-						break;
-				}
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e)
-			{
-			
-			}
-		});
+		board=new Board(0);
+		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new LevelsPane(board), board);
+		pane.getRightComponent().addKeyListener(board);
+		add(pane);
+		//add(board);
+//		addKeyListener(new KeyListener()
+//		{
+//			@Override
+//			public void keyTyped(KeyEvent e)
+//			{
+//
+//			}
+//
+//			@Override
+//			public void keyPressed(KeyEvent e)
+//			{
+//				playWalkingSound();
+//				numberOfSteps++;
+//				switch (e.getKeyCode())
+//				{
+//					case KeyEvent.VK_LEFT:
+//						System.out.println("LEFT");
+//						Player.MoveLeft(board);
+//						break;
+//					case KeyEvent.VK_RIGHT:
+//						System.out.println("RIGHT");
+//						Player.MoveRight(board);
+//						break;
+//					case KeyEvent.VK_UP:
+//						System.out.println("UP");
+//						Player.MoveUp(board);
+//						break;
+//					case KeyEvent.VK_DOWN:
+//						System.out.println("DOWN");
+//						Player.MoveDown(board);
+//						break;
+//				}
+//			}
+//
+//			@Override
+//			public void keyReleased(KeyEvent e)
+//			{
+//
+//			}
+//		});
 		setResizable(false);
 		pack();
 		setVisible(true);
 		playBackgroundMusic();
+		pane.getRightComponent().setFocusable(true);
+		pane.getRightComponent().requestFocus();
 	}
 	
 	public static void main(String[] args) throws IOException
