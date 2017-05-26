@@ -18,7 +18,7 @@ enum PlayerState
 class Board extends JPanel
 {
 	static Cell[][] board;
-	private int numberOfBoxs;
+	private int numberOfBoxes;
 	private JLabel[][] jLabels;
 	static PlayerState playerState;
 	
@@ -89,7 +89,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
-					numberOfBoxs++;
+					numberOfBoxes++;
 					jLabels[i][j]=new JLabel(new ImageIcon("Images/StorageWithBox.png"));
 					add(jLabels[i][j]);
 					continue;
@@ -130,7 +130,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].hasBox())//Box on the floor
 				{
-					numberOfBoxs++;
+					numberOfBoxes++;
 					jLabels[i][j]=new JLabel(new ImageIcon("Images/Box.png"));
 					add(jLabels[i][j]);
 				}
@@ -142,7 +142,7 @@ class Board extends JPanel
 	
 	void RefreshBoard()
 	{
-		int counterPlacedBoxs=0;
+		int counterPlacedBoxes=0;
 		for (int i=0; i<board.length; i++)
 			for (int j=0; j<board[i].length; j++)
 			{
@@ -154,7 +154,7 @@ class Board extends JPanel
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
-					counterPlacedBoxs++;
+					counterPlacedBoxes++;
 					jLabels[i][j].setIcon(new ImageIcon("Images/StorageWithBox.png"));
 					add(jLabels[i][j]);
 					continue;
@@ -199,7 +199,7 @@ class Board extends JPanel
 					add(jLabels[i][j]);
 				}
 			}
-		if (numberOfBoxs==counterPlacedBoxs)
+		if (numberOfBoxes==counterPlacedBoxes)
 		{
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
 		}
@@ -215,7 +215,7 @@ class Board extends JPanel
 		}
 		catch (Exception exc)
 		{
-			exc.printStackTrace(System.out);
+			exc.printStackTrace();
 		}
 	}
 }
