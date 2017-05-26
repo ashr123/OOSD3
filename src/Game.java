@@ -22,7 +22,9 @@ public class Game extends JFrame
 		counter=new JLabel(numberOfSteps+"");
 		Board board=new Board(0);
 		JSplitPane paneOfPanes=new JSplitPane(JSplitPane.VERTICAL_SPLIT, counter, new LevelsPane(this));
+		paneOfPanes.setEnabled(false);
 		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paneOfPanes, board);
+		pane.setEnabled(false);
 		add(pane);
 		setResizable(false);
 		pack();
