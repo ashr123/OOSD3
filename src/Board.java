@@ -86,6 +86,8 @@ class Board extends JPanel implements KeyListener
 	
 	private void buildBoard()
 	{
+		Game.setNumberOfSteps(0);
+		Game.getCounter().setText(0+"");
 		setLayout(new GridLayout(board.length, board[0].length));
 		jLabels=new JLabel[board.length][board[0].length];
 		for (int i=0; i<board.length; i++)

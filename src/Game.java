@@ -117,4 +117,7 @@ public class Game extends JFrame
 	public static JLabel getCounter(){
 		return counter;
 	}
+	public static void setNumberOfSteps(int number){
+		numberOfSteps = number;
+	}
 }
