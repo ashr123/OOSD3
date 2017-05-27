@@ -7,8 +7,8 @@ import java.io.IOException;
 public class Game extends JFrame
 {
 	static int numberOfSteps;
-	private static JLabel counter;
 	static JSplitPane pane;
+	private static JLabel counter;
 	
 	/**
 	 * Builds a game window

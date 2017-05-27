@@ -18,7 +18,7 @@ public class Cell
 	/**
 	 * construct a Floor cell
 	 */
-	Cell(Boolean isStorage, Boolean hasPlayer, Boolean hasBox)
+	Cell(boolean isStorage, boolean hasPlayer, boolean hasBox)
 	{
 		_isFloor=true;
 		_isStorage=isStorage;

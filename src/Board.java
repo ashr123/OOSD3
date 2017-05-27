@@ -24,9 +24,9 @@ enum PlayerState
 class Board extends JPanel
 {
 	static Cell[][] board;
+	static PlayerState playerState;
 	private int numberOfBoxes;
 	private JLabel[][] jLabels;
-	static PlayerState playerState;
 	
 	/**
 	 * Builds a new board
@@ -167,26 +167,22 @@ class Board extends JPanel
 				if (!board[i][j].isFloor())//is a wall
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/WallBlack.png"));
-					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					counterPlacedBoxes++;
 					jLabels[i][j].setIcon(new ImageIcon("Images/StorageWithBox.png"));
-					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Storage.png"));
-					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Grass.png"));
-					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].hasPlayer() && !board[i][j].hasBox())//Player
@@ -208,19 +204,13 @@ class Board extends JPanel
 							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterRight.png"));
 							break;
 					}
-					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].hasBox())//Box on the floor
-				{
 					jLabels[i][j].setIcon(new ImageIcon("Images/Box.png"));
-					add(jLabels[i][j]);
-				}
 			}
 		if (numberOfBoxes==counterPlacedBoxes)
-		{
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
-		}
 	}
 	
 	/**
