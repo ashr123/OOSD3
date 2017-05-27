@@ -69,7 +69,7 @@ class Game extends JFrame
 		}
 		catch (Exception exc)
 		{
-			exc.printStackTrace(System.out);
+			exc.printStackTrace();
 		}
 	}
 	
