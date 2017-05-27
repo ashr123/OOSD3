@@ -1,3 +1,5 @@
+import levelLoader.LevelLoader;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
@@ -6,6 +8,7 @@ import java.io.IOException;
 
 public class Game extends JFrame
 {
+	static final LevelLoader loader=new LevelLoader();
 	static int numberOfSteps;
 	static JSplitPane pane;
 	private static JLabel counter;
@@ -17,6 +20,7 @@ public class Game extends JFrame
 	private Game() throws IOException
 	{
 		super("Sokoban");
+		loader.load();
 		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		counter=new JLabel(numberOfSteps+"");

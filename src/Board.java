@@ -1,5 +1,4 @@
 import levelLoader.Cell;
-import levelLoader.LevelLoader;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -35,9 +34,7 @@ class Board extends JPanel
 	 */
 	Board(int level) throws IOException
 	{
-		LevelLoader loader=new LevelLoader();
-		loader.load();
-		board=loader.get(level);
+		board=Game.loader.get(level);
 		final Board temp=this;
 		addKeyListener(new KeyListener()
 		{
