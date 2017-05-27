@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
-public class Game extends JFrame
+class Game extends JFrame
 {
 	static final LevelLoader loader=new LevelLoader();
 	static int numberOfSteps;
