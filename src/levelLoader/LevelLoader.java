@@ -90,9 +90,7 @@ public class LevelLoader
 			row++;
 		}
 		if (null!=level)
-		{
 			_levels.add(level);
-		}
 		br.close();
 	}
 	
@@ -106,13 +104,15 @@ public class LevelLoader
 	
 	/**
 	 * @param index the level number
-	 * @return the initial state of level number {@code index}
-	 * <p>
-	 * TODO - is recommended to create a deep copy of the array.
+	 * @return a deep copy of the initial state of level number {@code index}
 	 */
 	public Cell[][] get(int index)
 	{
-		return _levels.get(index);
+		Cell[][] output=new Cell[_levels.get(index).length][_levels.get(index)[0].length];
+		for (int i=0; i<_levels.get(index).length; i++)
+			for (int j=0; j<_levels.get(index)[i].length; j++)
+				output[i][j]=new Cell(_levels.get(index)[i][j]);
+		return output;
 	}
 	
 	/**

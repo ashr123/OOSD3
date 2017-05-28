@@ -26,6 +26,16 @@ public class Cell
 		_hasBox=hasBox;
 	}
 	
+	/**
+	 * Clones an existing {@code Cell}
+	 * @param cell the {@code Cell} to be cloned
+	 */
+	Cell(Cell cell)
+	{
+		this(cell.isStorage(), cell.hasPlayer(), cell.hasBox());
+		_isFloor=cell.isFloor();
+	}
+	
 	public boolean isFloor()
 	{
 		return _isFloor;

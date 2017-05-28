@@ -53,19 +53,15 @@ class Board extends JPanel
 				switch (e.getKeyCode())
 				{
 					case KeyEvent.VK_LEFT:
-						System.out.println("LEFT");
 						Player.MoveLeft(temp);
 						break;
 					case KeyEvent.VK_RIGHT:
-						System.out.println("RIGHT");
 						Player.MoveRight(temp);
 						break;
 					case KeyEvent.VK_UP:
-						System.out.println("UP");
 						Player.MoveUp(temp);
 						break;
 					case KeyEvent.VK_DOWN:
-						System.out.println("DOWN");
 						Player.MoveDown(temp);
 						break;
 				}
