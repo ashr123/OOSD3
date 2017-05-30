@@ -24,15 +24,15 @@ enum PlayerState
  */
 class Board extends JPanel
 {
-	private static final ImageIcon[] imageIcons={new ImageIcon("Images/WallBlack.png"),
-	                                             new ImageIcon("Images/StorageWithBox.png"),
-	                                             new ImageIcon("Images/Storage.png"),
-	                                             new ImageIcon("Images/Grass.png"),
-	                                             new ImageIcon("Images/CharacterFront.png"),
-	                                             new ImageIcon("Images/CharacterBack.png"),
-	                                             new ImageIcon("Images/CharacterLeft.png"),
-	                                             new ImageIcon("Images/CharacterRight.png"),
-	                                             new ImageIcon("Images/Box.png")};
+	private static final ImageIcon IMAGE_ICON_WALL=new ImageIcon("Images/WallBlack.png");
+	private static final ImageIcon IMAGE_ICON_STORAGE_WITH_BOX=new ImageIcon("Images/StorageWithBox.png");
+	private static final ImageIcon IMAGE_ICON_STORAGE=new ImageIcon("Images/Storage.png");
+	private static final ImageIcon IMAGE_ICON_GRASS=new ImageIcon("Images/Grass.png");
+	private static final ImageIcon IMAGE_ICON_CHARACTER_FRONT=new ImageIcon("Images/CharacterFront.png");
+	private static final ImageIcon IMAGE_ICON_CHARACTER_BACK=new ImageIcon("Images/CharacterBack.png");
+	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon("Images/CharacterLeft.png");
+	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon("Images/CharacterRight.png");
+	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon("Images/Box.png");
 	static Cell[][] board;
 	static PlayerState playerState;
 	private int numberOfBoxes;
@@ -121,26 +121,26 @@ class Board extends JPanel
 			{
 				if (!board[i][j].isFloor())//is a wall
 				{
-					jLabels[i][j]=new JLabel(imageIcons[0]);
+					jLabels[i][j]=new JLabel(IMAGE_ICON_WALL);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					numberOfBoxes++;
-					jLabels[i][j]=new JLabel(imageIcons[1]);
+					jLabels[i][j]=new JLabel(IMAGE_ICON_STORAGE_WITH_BOX);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					jLabels[i][j]=new JLabel(imageIcons[2]);
+					jLabels[i][j]=new JLabel(IMAGE_ICON_STORAGE);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
-					jLabels[i][j]=new JLabel(imageIcons[3]);
+					jLabels[i][j]=new JLabel(IMAGE_ICON_GRASS);
 					add(jLabels[i][j]);
 					continue;
 				}
@@ -151,16 +151,16 @@ class Board extends JPanel
 					switch (playerState)
 					{
 						case FRONT:
-							jLabels[i][j]=new JLabel(imageIcons[4]);
+							jLabels[i][j]=new JLabel(IMAGE_ICON_CHARACTER_FRONT);
 							break;
 						case BACK:
-							jLabels[i][j]=new JLabel(imageIcons[5]);
+							jLabels[i][j]=new JLabel(IMAGE_ICON_CHARACTER_BACK);
 							break;
 						case LEFT:
-							jLabels[i][j]=new JLabel(imageIcons[6]);
+							jLabels[i][j]=new JLabel(IMAGE_ICON_CHARACTER_LEFT);
 							break;
 						case RIGHT:
-							jLabels[i][j]=new JLabel(imageIcons[7]);
+							jLabels[i][j]=new JLabel(IMAGE_ICON_CHARACTER_RIGHT);
 							break;
 					}
 					add(jLabels[i][j]);
@@ -169,7 +169,7 @@ class Board extends JPanel
 				if (board[i][j].hasBox())//Box on the floor
 				{
 					numberOfBoxes++;
-					jLabels[i][j]=new JLabel(imageIcons[8]);
+					jLabels[i][j]=new JLabel(IMAGE_ICON_BOX);
 					add(jLabels[i][j]);
 				}
 			}
@@ -189,23 +189,23 @@ class Board extends JPanel
 			{
 				if (!board[i][j].isFloor())//is a wall
 				{
-					jLabels[i][j].setIcon(imageIcons[0]);
+					jLabels[i][j].setIcon(IMAGE_ICON_WALL);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					counterPlacedBoxes++;
-					jLabels[i][j].setIcon(imageIcons[1]);
+					jLabels[i][j].setIcon(IMAGE_ICON_STORAGE_WITH_BOX);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					jLabels[i][j].setIcon(imageIcons[2]);
+					jLabels[i][j].setIcon(IMAGE_ICON_STORAGE);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
-					jLabels[i][j].setIcon(imageIcons[3]);
+					jLabels[i][j].setIcon(IMAGE_ICON_GRASS);
 					continue;
 				}
 				if (board[i][j].hasPlayer() && !board[i][j].hasBox())//Player
@@ -215,22 +215,22 @@ class Board extends JPanel
 					switch (playerState)
 					{
 						case FRONT:
-							jLabels[i][j].setIcon(imageIcons[4]);
+							jLabels[i][j].setIcon(IMAGE_ICON_CHARACTER_FRONT);
 							break;
 						case BACK:
-							jLabels[i][j].setIcon(imageIcons[5]);
+							jLabels[i][j].setIcon(IMAGE_ICON_CHARACTER_BACK);
 							break;
 						case LEFT:
-							jLabels[i][j].setIcon(imageIcons[6]);
+							jLabels[i][j].setIcon(IMAGE_ICON_CHARACTER_LEFT);
 							break;
 						case RIGHT:
-							jLabels[i][j].setIcon(imageIcons[7]);
+							jLabels[i][j].setIcon(IMAGE_ICON_CHARACTER_RIGHT);
 							break;
 					}
 					continue;
 				}
 				if (board[i][j].hasBox())//Box on the floor
-					jLabels[i][j].setIcon(imageIcons[8]);
+					jLabels[i][j].setIcon(IMAGE_ICON_BOX);
 			}
 		if (numberOfBoxes==counterPlacedBoxes)
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
