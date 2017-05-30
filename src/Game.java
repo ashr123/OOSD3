@@ -5,7 +5,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 
 class Game extends JFrame
@@ -70,7 +69,7 @@ class Game extends JFrame
 	                                                 UnsupportedAudioFileException
 	{
 		Clip clip=AudioSystem.getClip();
-		clip.open(AudioSystem.getAudioInputStream(new File("Sounds/GameMusic.wav")));
+		clip.open(AudioSystem.getAudioInputStream(Game.class.getClassLoader().getResource("Sounds/GameMusic.wav")));
 		clip.loop(Integer.MAX_VALUE);
 	}
 	

@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -22,17 +21,18 @@ enum PlayerState
 /**
  * Represents a Sokoban board
  */
+@SuppressWarnings("ConstantConditions")
 class Board extends JPanel
 {
-	private static final ImageIcon IMAGE_ICON_WALL=new ImageIcon("Images/WallBlack.png");
-	private static final ImageIcon IMAGE_ICON_STORAGE_WITH_BOX=new ImageIcon("Images/StorageWithBox.png");
-	private static final ImageIcon IMAGE_ICON_STORAGE=new ImageIcon("Images/Storage.png");
-	private static final ImageIcon IMAGE_ICON_GRASS=new ImageIcon("Images/Grass.png");
-	private static final ImageIcon IMAGE_ICON_CHARACTER_FRONT=new ImageIcon("Images/CharacterFront.png");
-	private static final ImageIcon IMAGE_ICON_CHARACTER_BACK=new ImageIcon("Images/CharacterBack.png");
-	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon("Images/CharacterLeft.png");
-	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon("Images/CharacterRight.png");
-	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon("Images/Box.png");
+	private static final ImageIcon IMAGE_ICON_WALL=new ImageIcon(Board.class.getClassLoader().getResource("Images/WallBlack.png"));
+	private static final ImageIcon IMAGE_ICON_STORAGE_WITH_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/StorageWithBox.png"));
+	private static final ImageIcon IMAGE_ICON_STORAGE=new ImageIcon(Board.class.getClassLoader().getResource("Images/Storage.png"));
+	private static final ImageIcon IMAGE_ICON_GRASS=new ImageIcon(Board.class.getClassLoader().getResource("Images/Grass.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_FRONT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterFront.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_BACK=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterBack.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterLeft.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterRight.png"));
+	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/Box.png"));
 	static Cell[][] board;
 	static PlayerState playerState;
 	private int numberOfBoxes;
@@ -102,7 +102,9 @@ class Board extends JPanel
 	private static void playWalkingSound() throws LineUnavailableException, IOException, UnsupportedAudioFileException
 	{
 		Clip clip=AudioSystem.getClip();
-		clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
+//		clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
+		clip.open(AudioSystem.getAudioInputStream(
+				Board.class.getClassLoader().getResource("Sounds/WalkingOnGrassSound.wav")));
 		clip.start();
 	}
 	

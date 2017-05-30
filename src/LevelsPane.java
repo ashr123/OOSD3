@@ -17,12 +17,11 @@ class LevelsPane extends JPanel
 	{
 		super(new GridLayout());
 		((GridLayout)getLayout()).setRows(Game.loader.getLevelsCount());
-		JButton[] buttons=new JButton[Game.loader.getLevelsCount()];
 		for (int i=0; i<Game.loader.getLevelsCount(); i++)
 		{
-			buttons[i]=new JButton("Level "+(i+1));
+			add(new JButton("Level "+(i+1)));
 			final int finalI=i;
-			buttons[i].addActionListener(new ActionListener()
+			((JButton)getComponent(i)).addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent e)
@@ -35,7 +34,7 @@ class LevelsPane extends JPanel
 					game.pack();
 				}
 			});
-			add(buttons[i]);
+//			add(buttons[i]);
 		}
 	}
 }
