@@ -102,9 +102,7 @@ class Board extends JPanel
 	private static void playWalkingSound() throws LineUnavailableException, IOException, UnsupportedAudioFileException
 	{
 		Clip clip=AudioSystem.getClip();
-//		clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
-		clip.open(AudioSystem.getAudioInputStream(
-				Board.class.getClassLoader().getResource("Sounds/WalkingOnGrassSound.wav")));
+		clip.open(AudioSystem.getAudioInputStream(Board.class.getClassLoader().getResource("Sounds/WalkingOnGrassSound.wav")));
 		clip.start();
 	}
 	
