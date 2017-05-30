@@ -2,6 +2,8 @@ import levelLoader.Cell;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,6 +24,15 @@ enum PlayerState
  */
 class Board extends JPanel
 {
+	private static final ImageIcon[] imageIcons={new ImageIcon("Images/WallBlack.png"),
+	                                             new ImageIcon("Images/StorageWithBox.png"),
+	                                             new ImageIcon("Images/Storage.png"),
+	                                             new ImageIcon("Images/Grass.png"),
+	                                             new ImageIcon("Images/CharacterFront.png"),
+	                                             new ImageIcon("Images/CharacterBack.png"),
+	                                             new ImageIcon("Images/CharacterLeft.png"),
+	                                             new ImageIcon("Images/CharacterRight.png"),
+	                                             new ImageIcon("Images/Box.png")};
 	static Cell[][] board;
 	static PlayerState playerState;
 	private int numberOfBoxes;
@@ -30,9 +41,8 @@ class Board extends JPanel
 	/**
 	 * Builds a new board
 	 * @param level the level of which the player wants to play
-	 * @throws IOException if there is any error with the levels file
 	 */
-	Board(int level) throws IOException
+	Board(int level)
 	{
 		board=Game.loader.get(level);
 		final Board temp=this;
@@ -47,7 +57,14 @@ class Board extends JPanel
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-				playWalkingSound();
+				try
+				{
+					playWalkingSound();
+				}
+				catch (LineUnavailableException | IOException | UnsupportedAudioFileException e1)
+				{
+					e1.printStackTrace();
+				}
 				Game.numberOfSteps++;
 				Game.getCounter().setText(Game.getNumberOfSteps()+"");
 				switch (e.getKeyCode())
@@ -77,6 +94,19 @@ class Board extends JPanel
 	}
 	
 	/**
+	 * Plays a walking sound for every move the player makes
+	 * @throws LineUnavailableException if a clip object is not available due to resource restrictions
+	 * @throws IOException if an I/O exception occurs
+	 * @throws UnsupportedAudioFileException if the {@code File} does not point to valid audio file data recognized by the system
+	 */
+	private static void playWalkingSound() throws LineUnavailableException, IOException, UnsupportedAudioFileException
+	{
+		Clip clip=AudioSystem.getClip();
+		clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
+		clip.start();
+	}
+	
+	/**
 	 * Builds a board
 	 */
 	private void buildBoard()
@@ -91,26 +121,26 @@ class Board extends JPanel
 			{
 				if (!board[i][j].isFloor())//is a wall
 				{
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/WallBlack.png"));
+					jLabels[i][j]=new JLabel(imageIcons[0]);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					numberOfBoxes++;
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/StorageWithBox.png"));
+					jLabels[i][j]=new JLabel(imageIcons[1]);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/Storage.png"));
+					jLabels[i][j]=new JLabel(imageIcons[2]);
 					add(jLabels[i][j]);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/Grass.png"));
+					jLabels[i][j]=new JLabel(imageIcons[3]);
 					add(jLabels[i][j]);
 					continue;
 				}
@@ -121,16 +151,16 @@ class Board extends JPanel
 					switch (playerState)
 					{
 						case FRONT:
-							jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterFront.png"));
+							jLabels[i][j]=new JLabel(imageIcons[4]);
 							break;
 						case BACK:
-							jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterBack.png"));
+							jLabels[i][j]=new JLabel(imageIcons[5]);
 							break;
 						case LEFT:
-							jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterLeft.png"));
+							jLabels[i][j]=new JLabel(imageIcons[6]);
 							break;
 						case RIGHT:
-							jLabels[i][j]=new JLabel(new ImageIcon("Images/CharacterRight.png"));
+							jLabels[i][j]=new JLabel(imageIcons[7]);
 							break;
 					}
 					add(jLabels[i][j]);
@@ -139,7 +169,7 @@ class Board extends JPanel
 				if (board[i][j].hasBox())//Box on the floor
 				{
 					numberOfBoxes++;
-					jLabels[i][j]=new JLabel(new ImageIcon("Images/Box.png"));
+					jLabels[i][j]=new JLabel(imageIcons[8]);
 					add(jLabels[i][j]);
 				}
 			}
@@ -159,23 +189,23 @@ class Board extends JPanel
 			{
 				if (!board[i][j].isFloor())//is a wall
 				{
-					jLabels[i][j].setIcon(new ImageIcon("Images/WallBlack.png"));
+					jLabels[i][j].setIcon(imageIcons[0]);
 					continue;
 				}
 				if (board[i][j].isStorage() && board[i][j].hasBox())//Storage with box
 				{
 					counterPlacedBoxes++;
-					jLabels[i][j].setIcon(new ImageIcon("Images/StorageWithBox.png"));
+					jLabels[i][j].setIcon(imageIcons[1]);
 					continue;
 				}
 				if (board[i][j].isStorage() && !board[i][j].hasBox() && !board[i][j].hasPlayer())//Storage without a box
 				{
-					jLabels[i][j].setIcon(new ImageIcon("Images/Storage.png"));
+					jLabels[i][j].setIcon(imageIcons[2]);
 					continue;
 				}
 				if (board[i][j].isEmptyFloor())//Is empty floor
 				{
-					jLabels[i][j].setIcon(new ImageIcon("Images/Grass.png"));
+					jLabels[i][j].setIcon(imageIcons[3]);
 					continue;
 				}
 				if (board[i][j].hasPlayer() && !board[i][j].hasBox())//Player
@@ -185,41 +215,24 @@ class Board extends JPanel
 					switch (playerState)
 					{
 						case FRONT:
-							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterFront.png"));
+							jLabels[i][j].setIcon(imageIcons[4]);
 							break;
 						case BACK:
-							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterBack.png"));
+							jLabels[i][j].setIcon(imageIcons[5]);
 							break;
 						case LEFT:
-							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterLeft.png"));
+							jLabels[i][j].setIcon(imageIcons[6]);
 							break;
 						case RIGHT:
-							jLabels[i][j].setIcon(new ImageIcon("Images/CharacterRight.png"));
+							jLabels[i][j].setIcon(imageIcons[7]);
 							break;
 					}
 					continue;
 				}
 				if (board[i][j].hasBox())//Box on the floor
-					jLabels[i][j].setIcon(new ImageIcon("Images/Box.png"));
+					jLabels[i][j].setIcon(imageIcons[8]);
 			}
 		if (numberOfBoxes==counterPlacedBoxes)
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
-	}
-	
-	/**
-	 * Plays a walking sound for every move the player makes
-	 */
-	private void playWalkingSound()
-	{
-		try
-		{
-			Clip clip=AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(new File("Sounds/WalkingOnGrassSound.wav")));
-			clip.start();
-		}
-		catch (Exception exc)
-		{
-			exc.printStackTrace();
-		}
 	}
 }

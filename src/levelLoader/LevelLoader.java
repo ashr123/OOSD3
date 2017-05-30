@@ -16,13 +16,40 @@ public class LevelLoader
 	private static final char CHAR_PLAYER_AT_STORAGE='+';
 	
 	/**
-	 * contains the initial board state of all the levels
+	 * Contains the initial board state of all the levels
 	 */
 	private Vector<Cell[][]> _levels;
 	
 	public LevelLoader()
 	{
 		_levels=new Vector<>();
+	}
+	
+	/**
+	 * Creates {@link Cell} instance from {@code char} representation
+	 * @return the {@link Cell} object
+	 */
+	private static Cell parseCell(char cell)
+	{
+		switch (cell)
+		{
+			case CHAR_WALL:
+				return new Cell();
+			case CHAR_FLOOR:
+				return new Cell(false, false, false);
+			case CHAR_PLAYER:
+				return new Cell(false, true, false);
+			case CHAR_STORAGE:
+				return new Cell(true, false, false);
+			case CHAR_BOX:
+				return new Cell(false, false, true);
+			case CHAR_BOX_IN_STORAGE:
+				return new Cell(true, false, true);
+			case CHAR_PLAYER_AT_STORAGE:
+				return new Cell(true, true, false);
+			default:
+				return null;
+		}
 	}
 	
 	/**
@@ -113,32 +140,5 @@ public class LevelLoader
 			for (int j=0; j<_levels.get(index)[i].length; j++)
 				output[i][j]=new Cell(_levels.get(index)[i][j]);
 		return output;
-	}
-	
-	/**
-	 * create {@link Cell} instance from {@code char} representation
-	 * @return the {@link Cell} object
-	 */
-	private Cell parseCell(char cell)
-	{
-		switch (cell)
-		{
-			case CHAR_WALL:
-				return new Cell();
-			case CHAR_FLOOR:
-				return new Cell(false, false, false);
-			case CHAR_PLAYER:
-				return new Cell(false, true, false);
-			case CHAR_STORAGE:
-				return new Cell(true, false, false);
-			case CHAR_BOX:
-				return new Cell(false, false, true);
-			case CHAR_BOX_IN_STORAGE:
-				return new Cell(true, false, true);
-			case CHAR_PLAYER_AT_STORAGE:
-				return new Cell(true, true, false);
-			default:
-				return null;
-		}
 	}
 }
