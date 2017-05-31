@@ -55,7 +55,8 @@ class Game extends JFrame
 	 * @throws LineUnavailableException if a clip object is not available due to resource restrictions
 	 * @throws UnsupportedAudioFileException if the {@code File} does not point to valid audio file data recognized by the system
 	 */
-	public static void main(String[] args) throws IOException, LineUnavailableException, UnsupportedAudioFileException
+	public static void main(String[] args) throws IOException, LineUnavailableException,
+	                                              UnsupportedAudioFileException
 	{
 		new Game();
 	}
@@ -76,7 +77,8 @@ class Game extends JFrame
 	
 	static void resetCounter()
 	{
-		counterLabel.setText((counter=0)+"");
+		counter=0;
+		counterLabel.setText(counter+"");
 	}
 	
 	JSplitPane getPane()

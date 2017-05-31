@@ -99,10 +99,12 @@ class Board extends JPanel
 	 * @throws IOException if an I/O exception occurs
 	 * @throws UnsupportedAudioFileException if the {@code File} does not point to valid audio file data recognized by the system
 	 */
-	private static void playWalkingSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException
+	private static void playWalkingSound() throws IOException, UnsupportedAudioFileException,
+	                                              LineUnavailableException
 	{
 		Clip clip=AudioSystem.getClip();
-		clip.open(AudioSystem.getAudioInputStream(Board.class.getClassLoader().getResource("Sounds/WalkingOnGrassSound.wav")));
+		clip.open(AudioSystem.getAudioInputStream(Board.class.getClassLoader().getResource(
+				"Sounds/WalkingOnGrassSound.wav")));
 		clip.start();
 	}
 	
