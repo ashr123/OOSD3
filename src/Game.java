@@ -29,7 +29,7 @@ class Game extends JFrame
 		paneOfPanes.setEnabled(false);
 		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paneOfPanes, new Board(0));
 		pane.setEnabled(false);
-		add(pane);
+		setContentPane(pane);
 		setResizable(false);
 		pack();
 		setVisible(true);
