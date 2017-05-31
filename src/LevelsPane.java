@@ -16,8 +16,8 @@ class LevelsPane extends JPanel
 	LevelsPane(final Game game)
 	{
 		super(new GridLayout());
-		((GridLayout)getLayout()).setRows(Game.loader.getLevelsCount());
-		for (int i=0; i<Game.loader.getLevelsCount(); i++)
+		((GridLayout)getLayout()).setRows(Game.getLoader().getLevelsCount());
+		for (int i=0; i<Game.getLoader().getLevelsCount(); i++)
 		{
 			add(new JButton("Level "+(i+1)));
 			final int finalI=i;
@@ -26,9 +26,9 @@ class LevelsPane extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					game.pane.setRightComponent(new Board(finalI));
-					game.pane.getRightComponent().setFocusable(true);
-					game.pane.getRightComponent().requestFocus();
+					game.getPane().setRightComponent(new Board(finalI));
+					game.getPane().getRightComponent().setFocusable(true);
+					game.getPane().getRightComponent().requestFocus();
 					game.pack();
 				}
 			});

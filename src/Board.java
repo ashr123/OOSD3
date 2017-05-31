@@ -34,11 +34,10 @@ class Board extends JPanel
 	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterRight.png"));
 	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/Box.png"));
 	private final int level;
-	Cell[][] board;
+	private Cell[][] board;
 	private PlayerState playerState=PlayerState.FRONT;
-	private int numberOfBoxes;
+	private int numberOfBoxes, iniPlayerLocationY, iniPlayerLocationX;
 	private JLabel[][] jLabels;
-	
 	/**
 	 * Builds a new board
 	 * @param level the level of which the player wants to play
@@ -46,7 +45,7 @@ class Board extends JPanel
 	Board(int level)
 	{
 		this.level=level;
-		board=Game.loader.get(level);
+		board=Game.getLoader().get(level);
 		final Board temp=this;
 		addKeyListener(new KeyListener()
 		{
@@ -67,8 +66,7 @@ class Board extends JPanel
 				{
 					e1.printStackTrace();
 				}
-				Game.numberOfSteps++;
-				Game.getCounter().setText(Game.getNumberOfSteps()+"");
+				Game.increaseNumberOfSteps();
 				switch (e.getKeyCode())
 				{
 					case KeyEvent.VK_LEFT:
@@ -108,6 +106,11 @@ class Board extends JPanel
 		clip.start();
 	}
 	
+	Cell[][] getBoard()
+	{
+		return board;
+	}
+	
 	void setPlayerState(PlayerState playerState)
 	{
 		this.playerState=playerState;
@@ -118,7 +121,7 @@ class Board extends JPanel
 	 */
 	private void buildBoard()
 	{
-		Game.resetNumberOfSteps();
+//		Game.resetNumberOfSteps();
 		Game.getCounter().setText(0+"");
 		setLayout(new GridLayout(board.length, board[0].length));
 		//setLayout(new GridLayout(board[0].length, board.length));
@@ -153,8 +156,8 @@ class Board extends JPanel
 				}
 				if (board[i][j].hasPlayer() && !board[i][j].hasBox())//Player
 				{
-					Player.playerLocationY=i;
-					Player.playerLocationX=j;
+					iniPlayerLocationY=Player.playerLocationY=i;
+					iniPlayerLocationX=Player.playerLocationX=j;
 					switch (playerState)
 					{
 						case FRONT:
@@ -217,8 +220,6 @@ class Board extends JPanel
 				}
 				if (board[i][j].hasPlayer() && !board[i][j].hasBox())//Player
 				{
-					Player.playerLocationY=i;
-					Player.playerLocationX=j;
 					switch (playerState)
 					{
 						case FRONT:
@@ -242,9 +243,11 @@ class Board extends JPanel
 		if (numberOfBoxes==counterPlacedBoxes)
 		{
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
-			board=Game.loader.get(level);
+			board=Game.getLoader().get(level);
 			playerState=PlayerState.FRONT;
-			Game.resetNumberOfSteps();
+			Player.playerLocationY=iniPlayerLocationY;
+			Player.playerLocationX=iniPlayerLocationX;
+//			Game.resetNumberOfSteps();
 			Game.getCounter().setText(0+"");
 			refreshBoard();
 		}

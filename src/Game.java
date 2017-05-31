@@ -9,10 +9,9 @@ import java.io.IOException;
 
 class Game extends JFrame
 {
-	static final LevelLoader loader=new LevelLoader();
-	static int numberOfSteps;
-	private static JLabel counter=new JLabel(0+"");
-	JSplitPane pane;
+	private static final LevelLoader loader=new LevelLoader();
+	private static JLabel counter=new JLabel();
+	private JSplitPane pane;
 	
 	/**
 	 * Builds a game window
@@ -38,12 +37,14 @@ class Game extends JFrame
 		playBackgroundMusic();
 	}
 	
-	/**
-	 * @return the number of steps the player did in a single level
-	 */
-	static int getNumberOfSteps()
+	static LevelLoader getLoader()
 	{
-		return numberOfSteps;
+		return loader;
+	}
+	
+	static void increaseNumberOfSteps()
+	{
+		counter.setText((Integer.parseInt(counter.getText())+1)+"");
 	}
 	
 	/**
@@ -77,11 +78,8 @@ class Game extends JFrame
 		return counter;
 	}
 	
-	/**
-	 * Resets the number of steps when changing a level
-	 */
-	static void resetNumberOfSteps()
+	JSplitPane getPane()
 	{
-		numberOfSteps=0;
+		return pane;
 	}
 }
