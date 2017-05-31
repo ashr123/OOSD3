@@ -11,8 +11,8 @@ class Game extends JFrame
 {
 	static final LevelLoader loader=new LevelLoader();
 	static int numberOfSteps;
-	static JSplitPane pane;
 	private static JLabel counter=new JLabel(0+"");
+	JSplitPane pane;
 	
 	/**
 	 * Builds a game window
@@ -24,7 +24,6 @@ class Game extends JFrame
 	{
 		super("Sokoban");
 		loader.load();
-		Board.playerState=PlayerState.FRONT;
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		JSplitPane paneOfPanes=new JSplitPane(JSplitPane.VERTICAL_SPLIT, counter, new LevelsPane(this));
 		paneOfPanes.setEnabled(false);

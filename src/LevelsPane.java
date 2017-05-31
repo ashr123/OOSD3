@@ -26,11 +26,9 @@ class LevelsPane extends JPanel
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					Board.board=Game.loader.get(finalI);
-					Board.playerState=PlayerState.FRONT;
-					Game.pane.setRightComponent(new Board(finalI));
-					Game.pane.getRightComponent().setFocusable(true);
-					Game.pane.getRightComponent().requestFocus();
+					game.pane.setRightComponent(new Board(finalI));
+					game.pane.getRightComponent().setFocusable(true);
+					game.pane.getRightComponent().requestFocus();
 					game.pack();
 				}
 			});

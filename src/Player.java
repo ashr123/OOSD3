@@ -11,27 +11,27 @@ class Player
 	 */
 	static void MoveDown(Board board)
 	{
-		Board.playerState=PlayerState.FRONT;
-		if (playerLocationY+1<Board.board.length &&
-		    Board.board[playerLocationY+1][playerLocationX].isFloor())
-			if (Board.board[playerLocationY+1][playerLocationX].hasBox())
+		board.setPlayerState(PlayerState.FRONT);
+		if (playerLocationY+1<board.board.length &&
+		    board.board[playerLocationY+1][playerLocationX].isFloor())
+			if (board.board[playerLocationY+1][playerLocationX].hasBox())
 			{
-				if (playerLocationY+2<Board.board.length &&
-				    Board.board[playerLocationY+2][playerLocationX].isFloor() &&
-				    !Board.board[playerLocationY+2][playerLocationX].hasBox())
+				if (playerLocationY+2<board.board.length &&
+				    board.board[playerLocationY+2][playerLocationX].isFloor() &&
+				    !board.board[playerLocationY+2][playerLocationX].hasBox())
 				{
-					Board.board[playerLocationY++][playerLocationX].set_hasPlayer(false);
-					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-					Board.board[playerLocationY++][playerLocationX].set_hasBox(false);
-					Board.board[playerLocationY][playerLocationX].set_hasBox(true);
-					board.RefreshBoard();
+					board.board[playerLocationY++][playerLocationX].set_hasPlayer(false);
+					board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+					board.board[playerLocationY++][playerLocationX].set_hasBox(false);
+					board.board[playerLocationY][playerLocationX].set_hasBox(true);
+					board.refreshBoard();
 				}
 			}
 			else
 			{
-				Board.board[playerLocationY++][playerLocationX].set_hasPlayer(false);
-				Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				board.RefreshBoard();
+				board.board[playerLocationY++][playerLocationX].set_hasPlayer(false);
+				board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+				board.refreshBoard();
 			}
 	}
 	
@@ -41,27 +41,27 @@ class Player
 	 */
 	static void MoveUp(Board board)
 	{
-		Board.playerState=PlayerState.BACK;
-		if (playerLocationY-1<Board.board.length &&
-		    Board.board[playerLocationY-1][playerLocationX].isFloor())
-			if (Board.board[playerLocationY-1][playerLocationX].hasBox())
+		board.setPlayerState(PlayerState.BACK);
+		if (playerLocationY-1<board.board.length &&
+		    board.board[playerLocationY-1][playerLocationX].isFloor())
+			if (board.board[playerLocationY-1][playerLocationX].hasBox())
 			{
-				if (playerLocationY-2<Board.board.length &&
-				    Board.board[playerLocationY-2][playerLocationX].isFloor() &&
-				    !Board.board[playerLocationY-2][playerLocationX].hasBox())
+				if (playerLocationY-2<board.board.length &&
+				    board.board[playerLocationY-2][playerLocationX].isFloor() &&
+				    !board.board[playerLocationY-2][playerLocationX].hasBox())
 				{
-					Board.board[playerLocationY--][playerLocationX].set_hasPlayer(false);
-					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-					Board.board[playerLocationY--][playerLocationX].set_hasBox(false);
-					Board.board[playerLocationY][playerLocationX].set_hasBox(true);
-					board.RefreshBoard();
+					board.board[playerLocationY--][playerLocationX].set_hasPlayer(false);
+					board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+					board.board[playerLocationY--][playerLocationX].set_hasBox(false);
+					board.board[playerLocationY][playerLocationX].set_hasBox(true);
+					board.refreshBoard();
 				}
 			}
 			else
 			{
-				Board.board[playerLocationY--][playerLocationX].set_hasPlayer(false);
-				Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				board.RefreshBoard();
+				board.board[playerLocationY--][playerLocationX].set_hasPlayer(false);
+				board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+				board.refreshBoard();
 			}
 	}
 	
@@ -71,27 +71,27 @@ class Player
 	 */
 	static void MoveLeft(Board board)
 	{
-		Board.playerState=PlayerState.LEFT;
-		if (playerLocationX-1<Board.board[playerLocationY].length &&
-		    Board.board[playerLocationY][playerLocationX-1].isFloor())
-			if (Board.board[playerLocationY][playerLocationX-1].hasBox())
+		board.setPlayerState(PlayerState.LEFT);
+		if (playerLocationX-1<board.board[playerLocationY].length &&
+		    board.board[playerLocationY][playerLocationX-1].isFloor())
+			if (board.board[playerLocationY][playerLocationX-1].hasBox())
 			{
-				if (playerLocationX-2<Board.board[playerLocationY].length &&
-				    Board.board[playerLocationY][playerLocationX-2].isFloor() &&
-				    !Board.board[playerLocationY][playerLocationX-2].hasBox())
+				if (playerLocationX-2<board.board[playerLocationY].length &&
+				    board.board[playerLocationY][playerLocationX-2].isFloor() &&
+				    !board.board[playerLocationY][playerLocationX-2].hasBox())
 				{
-					Board.board[playerLocationY][playerLocationX--].set_hasPlayer(false);
-					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-					Board.board[playerLocationY][playerLocationX--].set_hasBox(false);
-					Board.board[playerLocationY][playerLocationX].set_hasBox(true);
-					board.RefreshBoard();
+					board.board[playerLocationY][playerLocationX--].set_hasPlayer(false);
+					board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+					board.board[playerLocationY][playerLocationX--].set_hasBox(false);
+					board.board[playerLocationY][playerLocationX].set_hasBox(true);
+					board.refreshBoard();
 				}
 			}
 			else
 			{
-				Board.board[playerLocationY][playerLocationX--].set_hasPlayer(false);
-				Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				board.RefreshBoard();
+				board.board[playerLocationY][playerLocationX--].set_hasPlayer(false);
+				board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+				board.refreshBoard();
 			}
 	}
 	
@@ -101,27 +101,27 @@ class Player
 	 */
 	static void MoveRight(Board board)
 	{
-		Board.playerState=PlayerState.RIGHT;
-		if (playerLocationX-1<Board.board[playerLocationY].length &&
-		    Board.board[playerLocationY][playerLocationX+1].isFloor())
-			if (Board.board[playerLocationY][playerLocationX+1].hasBox())
+		board.setPlayerState(PlayerState.RIGHT);
+		if (playerLocationX-1<board.board[playerLocationY].length &&
+		    board.board[playerLocationY][playerLocationX+1].isFloor())
+			if (board.board[playerLocationY][playerLocationX+1].hasBox())
 			{
-				if (playerLocationX-2<Board.board[playerLocationY].length &&
-				    Board.board[playerLocationY][playerLocationX+2].isFloor() &&
-				    !Board.board[playerLocationY][playerLocationX+2].hasBox())
+				if (playerLocationX-2<board.board[playerLocationY].length &&
+				    board.board[playerLocationY][playerLocationX+2].isFloor() &&
+				    !board.board[playerLocationY][playerLocationX+2].hasBox())
 				{
-					Board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
-					Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-					Board.board[playerLocationY][playerLocationX++].set_hasBox(false);
-					Board.board[playerLocationY][playerLocationX].set_hasBox(true);
-					board.RefreshBoard();
+					board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
+					board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+					board.board[playerLocationY][playerLocationX++].set_hasBox(false);
+					board.board[playerLocationY][playerLocationX].set_hasBox(true);
+					board.refreshBoard();
 				}
 			}
 			else
 			{
-				Board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
-				Board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
-				board.RefreshBoard();
+				board.board[playerLocationY][playerLocationX++].set_hasPlayer(false);
+				board.board[playerLocationY][playerLocationX].set_hasPlayer(true);
+				board.refreshBoard();
 			}
 	}
 }

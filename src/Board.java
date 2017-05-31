@@ -33,8 +33,9 @@ class Board extends JPanel
 	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterLeft.png"));
 	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterRight.png"));
 	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/Box.png"));
-	static Cell[][] board;
-	static PlayerState playerState;
+	private final int level;
+	Cell[][] board;
+	private PlayerState playerState=PlayerState.FRONT;
 	private int numberOfBoxes;
 	private JLabel[][] jLabels;
 	
@@ -44,6 +45,7 @@ class Board extends JPanel
 	 */
 	Board(int level)
 	{
+		this.level=level;
 		board=Game.loader.get(level);
 		final Board temp=this;
 		addKeyListener(new KeyListener()
@@ -99,11 +101,16 @@ class Board extends JPanel
 	 * @throws IOException if an I/O exception occurs
 	 * @throws UnsupportedAudioFileException if the {@code File} does not point to valid audio file data recognized by the system
 	 */
-	private static void playWalkingSound() throws LineUnavailableException, IOException, UnsupportedAudioFileException
+	private static void playWalkingSound() throws IOException, UnsupportedAudioFileException, LineUnavailableException
 	{
 		Clip clip=AudioSystem.getClip();
 		clip.open(AudioSystem.getAudioInputStream(Board.class.getClassLoader().getResource("Sounds/WalkingOnGrassSound.wav")));
 		clip.start();
+	}
+	
+	void setPlayerState(PlayerState playerState)
+	{
+		this.playerState=playerState;
 	}
 	
 	/**
@@ -181,7 +188,7 @@ class Board extends JPanel
 	/**
 	 * Refreshes the board after every move
 	 */
-	void RefreshBoard()
+	void refreshBoard()
 	{
 		int counterPlacedBoxes=0;
 		for (int i=0; i<board.length; i++)
@@ -233,6 +240,13 @@ class Board extends JPanel
 					jLabels[i][j].setIcon(IMAGE_ICON_BOX);
 			}
 		if (numberOfBoxes==counterPlacedBoxes)
+		{
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
+			board=Game.loader.get(level);
+			playerState=PlayerState.FRONT;
+			Game.resetNumberOfSteps();
+			Game.getCounter().setText(0+"");
+			refreshBoard();
+		}
 	}
 }
