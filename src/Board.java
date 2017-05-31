@@ -121,8 +121,7 @@ class Board extends JPanel
 	 */
 	private void buildBoard()
 	{
-//		Game.resetNumberOfSteps();
-		Game.getCounter().setText(0+"");
+		Game.resetCounter();
 		setLayout(new GridLayout(board.length, board[0].length));
 		//setLayout(new GridLayout(board[0].length, board.length));
 		jLabels=new JLabel[board.length][board[0].length];
@@ -244,11 +243,10 @@ class Board extends JPanel
 		{
 			JOptionPane.showMessageDialog(null, "Congratulations, you did it!");
 			board=Game.getLoader().get(level);
-			playerState=PlayerState.FRONT;
+			setPlayerState(PlayerState.FRONT);
 			Player.playerLocationY=iniPlayerLocationY;
 			Player.playerLocationX=iniPlayerLocationX;
-//			Game.resetNumberOfSteps();
-			Game.getCounter().setText(0+"");
+			Game.resetCounter();
 			refreshBoard();
 		}
 	}

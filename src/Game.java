@@ -10,7 +10,8 @@ import java.io.IOException;
 class Game extends JFrame
 {
 	private static final LevelLoader loader=new LevelLoader();
-	private static JLabel counter=new JLabel();
+	private static JLabel counterLabel=new JLabel();
+	private static int counter;
 	private JSplitPane pane;
 	
 	/**
@@ -24,7 +25,7 @@ class Game extends JFrame
 		super("Sokoban");
 		loader.load();
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		JSplitPane paneOfPanes=new JSplitPane(JSplitPane.VERTICAL_SPLIT, counter, new LevelsPane(this));
+		JSplitPane paneOfPanes=new JSplitPane(JSplitPane.VERTICAL_SPLIT, counterLabel, new LevelsPane(this));
 		paneOfPanes.setEnabled(false);
 		pane=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, paneOfPanes, new Board(0));
 		pane.setEnabled(false);
@@ -44,7 +45,7 @@ class Game extends JFrame
 	
 	static void increaseNumberOfSteps()
 	{
-		counter.setText((Integer.parseInt(counter.getText())+1)+"");
+		counterLabel.setText(++counter+"");
 	}
 	
 	/**
@@ -73,9 +74,9 @@ class Game extends JFrame
 		clip.loop(Integer.MAX_VALUE);
 	}
 	
-	static JLabel getCounter()
+	static void resetCounter()
 	{
-		return counter;
+		counterLabel.setText((counter=0)+"");
 	}
 	
 	JSplitPane getPane()
