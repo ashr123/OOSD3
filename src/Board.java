@@ -24,15 +24,15 @@ enum PlayerState
 @SuppressWarnings("ConstantConditions")
 class Board extends JPanel
 {
-	private static final ImageIcon IMAGE_ICON_WALL=new ImageIcon(Board.class.getClassLoader().getResource("Images/WallBlack.png"));
-	private static final ImageIcon IMAGE_ICON_STORAGE_WITH_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/StorageWithBox.png"));
-	private static final ImageIcon IMAGE_ICON_STORAGE=new ImageIcon(Board.class.getClassLoader().getResource("Images/Storage.png"));
-	private static final ImageIcon IMAGE_ICON_GRASS=new ImageIcon(Board.class.getClassLoader().getResource("Images/Grass.png"));
-	private static final ImageIcon IMAGE_ICON_CHARACTER_FRONT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterFront.png"));
-	private static final ImageIcon IMAGE_ICON_CHARACTER_BACK=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterBack.png"));
-	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterLeft.png"));
-	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon(Board.class.getClassLoader().getResource("Images/CharacterRight.png"));
-	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon(Board.class.getClassLoader().getResource("Images/Box.png"));
+	private static final ImageIcon IMAGE_ICON_WALL=new ImageIcon(Board.class.getResource("Images/WallBlack.png"));
+	private static final ImageIcon IMAGE_ICON_STORAGE_WITH_BOX=new ImageIcon(Board.class.getResource("Images/StorageWithBox.png"));
+	private static final ImageIcon IMAGE_ICON_STORAGE=new ImageIcon(Board.class.getResource("Images/Storage.png"));
+	private static final ImageIcon IMAGE_ICON_GRASS=new ImageIcon(Board.class.getResource("Images/Grass.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_FRONT=new ImageIcon(Board.class.getResource("Images/CharacterFront.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_BACK=new ImageIcon(Board.class.getResource("Images/CharacterBack.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_LEFT=new ImageIcon(Board.class.getResource("Images/CharacterLeft.png"));
+	private static final ImageIcon IMAGE_ICON_CHARACTER_RIGHT=new ImageIcon(Board.class.getResource("Images/CharacterRight.png"));
+	private static final ImageIcon IMAGE_ICON_BOX=new ImageIcon(Board.class.getResource("Images/Box.png"));
 	private final int level;
 	private Cell[][] board;
 	private PlayerState playerState=PlayerState.FRONT;
@@ -103,7 +103,7 @@ class Board extends JPanel
 	                                              LineUnavailableException
 	{
 		Clip clip=AudioSystem.getClip();
-		clip.open(AudioSystem.getAudioInputStream(Board.class.getClassLoader().getResource(
+		clip.open(AudioSystem.getAudioInputStream(Board.class.getResource(
 				"Sounds/WalkingOnGrassSound.wav")));
 		clip.start();
 	}
@@ -125,7 +125,6 @@ class Board extends JPanel
 	{
 		Game.resetCounter();
 		setLayout(new GridLayout(board.length, board[0].length));
-		//setLayout(new GridLayout(board[0].length, board.length));
 		jLabels=new JLabel[board.length][board[0].length];
 		for (int i=0; i<board.length; i++)
 			for (int j=0; j<board[i].length; j++)
@@ -184,9 +183,6 @@ class Board extends JPanel
 					add(jLabels[i][j]);
 				}
 			}
-//		for (int i=0; i<jLabels[0].length; i++)
-//			for (JLabel[] aLevel : jLabels)
-//				add(aLevel[i]!=null ? aLevel[i] : new JLabel());
 	}
 	
 	/**

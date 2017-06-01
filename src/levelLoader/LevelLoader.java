@@ -135,10 +135,10 @@ public class LevelLoader
 	 */
 	public Cell[][] get(int index)
 	{
-		Cell[][] output=new Cell[_levels.get(index).length][_levels.get(index)[0].length];
-		for (int i=0; i<_levels.get(index).length; i++)
-			for (int j=0; j<_levels.get(index)[i].length; j++)
-				output[i][j]=new Cell(_levels.get(index)[i][j]);
+		Cell[][] output=new Cell[_levels.get(index)[0].length][_levels.get(index).length];
+		for (int i=0; i<_levels.get(index)[0].length; i++)
+			for (int j=0; j<_levels.get(index).length; j++)
+				output[i][j]=new Cell(_levels.get(index)[j][i]);
 		return output;
 	}
 }
